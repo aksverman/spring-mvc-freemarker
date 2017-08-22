@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Quickstart',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    
+    compile group: 'org.freemarker', name: 'freemarker', version: '2.3.23'
+	compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.9.RELEASE'
+	compile group: 'org.springframework', name: 'spring-context-support', version: '4.3.9.RELEASE'
+	
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.5'
+	
+	testCompile group: 'junit', name: 'junit', version: '4.+'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
+
+
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath 'org.akhikhl.gretty:gretty:+'
+	}
+}		
