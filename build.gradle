@@ -40,7 +40,10 @@ uploadArchives {
        }
     }
 }
-
+gretty {
+	httpPort = 8081
+	contextPath = '/MvcFreeMarker'
+}
 
 buildscript {
 	repositories {

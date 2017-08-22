@@ -33,6 +33,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	    resolver.setCache(true); 
 	    resolver.setPrefix(""); 
 	    resolver.setSuffix(".ftl"); 
+	    resolver.setRequestContextAttribute("rc");
 	    return resolver; 
 	}
 

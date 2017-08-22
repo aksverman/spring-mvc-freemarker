@@ -4,9 +4,11 @@
 </head>
 
 <body>
-<h2> Add User </h2>
+<b> ${rc.contextPath} </b>
+
+<h2> Add User rootContext</h2>
   <fieldset>
-	<form name = "user" action="/MvcFreeMarker/addUser" method="POST">
+	<form name = "user" action="${rc.contextPath}/addUser" method="POST">
 		Username : <input type="text" name="username"> <br/>
 		Country  : <input type="text" name="country">  <br/>
 		<input type = "submit" value=" Add User "/>
@@ -22,5 +24,8 @@
 	<tr><td> ${user.username} </td> <td> ${user.country} </td> </tr>
 	</#list>
   </table>
+  
+  <h3> click to see in users Map </h3>
+  <a href="${rc.contextPath}/mapUser"> UsersMap </a>
 </body>
 </html>

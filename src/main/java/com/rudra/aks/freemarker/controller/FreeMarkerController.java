@@ -1,7 +1,9 @@
 package com.rudra.aks.freemarker.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,11 +20,16 @@ public class FreeMarkerController {
 
 	private static Logger logger = LogManager.getLogger(FreeMarkerController.class);
 	private static List<User>	userList = new ArrayList<User>();
+	private static Map<Integer, User> usersMap = new HashMap<Integer, User>();
 	
 	static {
 		logger.info("Adding default users to list");
 		userList.add(new User("aks", "india"));
 		userList.add(new User("rudra", "kailash"));
+		
+		logger.info("Adding default to user map");
+		usersMap.put(1, new User("first", "user"));
+		usersMap.put(2, new User("second", "user"));
 	}
 	
 	@RequestMapping( value = "/", method = RequestMethod.GET)
@@ -44,6 +51,12 @@ public class FreeMarkerController {
 			userList.add(user);
 		logger.info("User added");
 		return "redirect:/listUsers";
-	}
+	} 
 	
+	@RequestMapping( value="/mapUser", method = RequestMethod.GET)
+	public String	mapUser(@ModelAttribute("model") ModelMap model ) {
+		logger.info("Fetching users map...");
+		model.addAttribute("usersMap", usersMap);
+		return "mapuser";
+	}
 }
